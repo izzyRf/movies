@@ -5,8 +5,9 @@
             <v-app-bar
                     scroll-behavior="elevate fade-image"
                     scroll-threshold="1000"
-                    class="bg-white"
+                    
                     elevation-1
+                    color="#1F7A8C"
             >
                 <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
