@@ -5,14 +5,19 @@
             <v-app-bar
                     scroll-behavior="elevate fade-image"
                     scroll-threshold="1000"
-                    
                     elevation-1
-                    color="#1F7A8C"
+                    color="#022b3a"
             >
                 <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
+                <v-img
+                    src="~/assets/protection.png"
+                    max-height="50px"
+                    max-width="50px"
+                ></v-img>
+                <v-app-bar-title>DermaFitness</v-app-bar-title>
 
-                <v-app-bar-title>DermaFitness shop</v-app-bar-title>
+
 
                 <v-spacer></v-spacer>
                 <!-- Aquí es donde agregamos el menú desplegable -->
@@ -154,7 +159,7 @@
   font-weight: '12px';
   font-style: normal;
   text-transform: initial;
-  color: #022b3a;
+  color: #FFFFFF;
 
 }
 

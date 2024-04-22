@@ -1,13 +1,16 @@
 <template>
 
-  <v-container  fluid>
-    <v-row  class="mt-14 bg-grey-lighten-5" >
+  <v-container fluid >
+    <!-- <v-row  class="mt-14 bg-grey-lighten-5" >
       <v-col
         v-for="product in products"
         :key="product.id"
-        cols="12"
-        sm="2"
-        class=" px-2  border-md mt-4 mr-3 ml-3 mb-4 fondo-columna rounded"
+        xs="12"
+        sm="3"
+        md="3"
+        lg="3"
+        xl="2"
+        class=" px-1 border-md mt-3 mr-2 ml-2 mb-3 fondo-columna rounded"
       >
       <p class="text-product text-center"> {{product.attributes.name}} </p>
           <v-card
@@ -15,17 +18,15 @@
             elevation="2"
             max-width="270"
             v-if="product.attributes.gallery.data != null"
-            
           >
               <v-carousel  :continuous="false"
                 :show-arrows="false"
-                delimiter-icon="mdi-square" :height="320" hide-delimiter-background color="#022b3a" 
+                delimiter-icon="mdi-square" :height="300" hide-delimiter-background color="#022b3a" 
               >
                 <v-carousel-item
                   v-for="photo in product.attributes.gallery.data"
                   :key="photo.id"
                   :src="photo.attributes.url"
-                  cover
                 ></v-carousel-item>
               </v-carousel>
           </v-card>
@@ -36,9 +37,99 @@
             v-else
           >
               <v-img
-                :height="320"
+                :height="300"
                 aspect-ratio="1/1"
-                cover
+                :src=" product.attributes.image.data != null && product.attributes.image.data.attributes.url "
+              ></v-img>
+          </v-card>
+
+      <div class="text-center">
+    
+      </div>
+      
+      <div style="display: flex; justify-content: center; align-items: center; margin-top:10px;">
+        <p class="text-price2">Precio:</p>
+        <v-chip class="center-text ml-1" prepend-icon="mdi-currency-usd" variant="outlined">
+          <p class="text-price">  {{product.attributes.price != null ? product.attributes.price  : 'precio no disponible'}} </p>
+        </v-chip>
+        <v-chip
+          class="ma-2"
+          color="green"
+          size="small"
+          label
+          v-if="product.attributes.discount > 0 && product.attributes.discount < 1 "
+        >
+          <v-icon icon="mdi-percent-circle" start ></v-icon>
+         - %{{ product.attributes.discount * 100 }} descuento
+        </v-chip>
+      </div>
+      <div v-if=" product.attributes.rating != null " style="display: flex; justify-content: center; align-items: center; margin-top:-5px;">
+          <v-rating
+            v-model="product.attributes.rating"
+            active-color="#BFDBF7"
+            color="#E1E5F2"
+            size="small"
+          ></v-rating>
+      </div>
+
+      <div v-if=" product.attributes.rating != null " class="contenedor">
+          <p class="text-description-product">
+            {{  product.attributes.description != null ? product.attributes.description :  '' }}
+          </p>
+      </div>
+
+
+          <div style="display: flex; justify-content: center; align-items: center;">
+          
+          <v-btn class="mt-2" append-icon="mdi-cart-plus" variant="outlined" size="small" color="#1F7A8C">
+            <p class="text-cart">  Agregar a carrito </p>
+          </v-btn>
+          </div>
+
+          
+
+      </v-col>
+    </v-row> -->
+
+  <v-row class="px-1 ga-1 mt-14 bg-grey-lighten-5 ">
+      <v-col
+        v-for="product in products"
+        :key="product.id"
+        xs="12"
+        sm="3"
+        md="3"
+        lg="2"
+        xl="2"
+        xxl="2"
+        class="px-1 border-md p-2 fondo-columna rounded"
+      >
+      <p class="text-product text-center"> {{product.attributes.name}} </p>
+          <v-card
+            class="mx-auto mt-4 border-sm"
+            elevation="2"
+            max-width="270"
+            v-if="product.attributes.gallery.data != null"
+          >
+              <v-carousel  :continuous="false"
+                :show-arrows="false"
+                delimiter-icon="mdi-square" :height="300" hide-delimiter-background color="#022b3a" 
+              >
+                <v-carousel-item
+                  v-for="photo in product.attributes.gallery.data"
+                  :key="photo.id"
+                  :src="photo.attributes.url"
+                ></v-carousel-item>
+              </v-carousel>
+          </v-card>
+          <v-card
+            class="mx-auto mt-4"
+            elevation="2"
+            max-width="270"
+            v-else
+          >
+              <v-img
+                :height="300"
+                aspect-ratio="1/1"
                 :src=" product.attributes.image.data != null && product.attributes.image.data.attributes.url "
               ></v-img>
           </v-card>
@@ -81,9 +172,6 @@
           </p>
       </div>
 
-        
-
-
 
           <div style="display: flex; justify-content: center; align-items: center;">
           <!--   <v-text-field
@@ -112,17 +200,19 @@
           
 
       </v-col>
-    </v-row>
+  </v-row>
+    
 
-    <v-row>
-         <v-col
-       cols="12"
+    <!-- <v-row>
+      <v-col
+        cols="12"
       >
       <p>{{products}}</p>
         
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
+  
  
 </template>
 
@@ -172,13 +262,16 @@
 .text-product{
   font-family: 'Jost', sans-serif;
   font-optical-sizing: auto;
-  font-weight: '12px';
-  font-style: normal;
+  font-weight: '10px';
+  font-style: initial;
   text-transform: initial;
   color: #022b3a !important;
   text-align: center;
   font-weight: bold;
-
+  /* Añade las siguientes líneas a tu código */
+  white-space: nowrap; /* Evita que el texto se pase a la siguiente línea */
+  overflow: hidden; /* Oculta el texto que se sale del contenedor */
+  text-overflow: ellipsis; /* Añade puntos suspensivos al final del texto que se sale del contenedor */
 }
 
 .text-price{
@@ -246,8 +339,8 @@
 .contenedor {
   height: 165px; 
   overflow: hidden; 
-  line-height: 1em; /* Establece la altura de línea */
-  max-height: 4.9em; /* Establece la altura máxima a tres líneas de texto */
+  line-height: 1.2em; /* Establece la altura de línea */
+  max-height: 4.5em; /* Establece la altura máxima a tres líneas de texto */
   margin-top: -15px;
 }
 
