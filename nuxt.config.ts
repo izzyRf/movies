@@ -16,6 +16,15 @@ export default defineNuxtConfig({
     },
     //...
   ],
+  runtimeConfig: {
+    mercadopagoWebHookSecret:'',
+    mercadopagoAccessToken:'',
+
+    public:{
+      baseURL:'',
+      mercadopagoKey:'',
+    },
+  },
   vite: {
     vue: {
       template: {
